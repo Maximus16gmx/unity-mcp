@@ -46,7 +46,6 @@ namespace UnityMcpBridge.Editor.Data
             new()
             {
                 name = "Gemini CLI",
-                // TODO: Verify the correct config path for Gemini CLI
                 windowsConfigPath = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
                     ".gemini",
@@ -60,6 +59,24 @@ namespace UnityMcpBridge.Editor.Data
                 mcpType = McpTypes.GeminiCli,
                 configStatus = "Not Configured",
             },
+            new()
+            {
+                name = "Claude Code",
+                windowsConfigPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                    "Code",
+                    "claude_code_config.json"
+                ),
+                linuxConfigPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                    ".config",
+                    "Code",
+                    "claude_code_config.json"
+                ),
+                mcpType = McpTypes.ClaudeCode,
+                configStatus = "Not Configured",
+            },
+            
         };
 
         // Initialize status enums after construction

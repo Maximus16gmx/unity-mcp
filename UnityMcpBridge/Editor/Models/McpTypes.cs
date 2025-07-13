@@ -5,6 +5,8 @@ namespace UnityMcpBridge.Editor.Models
         ClaudeDesktop,
         Cursor,
         GeminiCli,
+        ClaudeCode,
+        
     }
 }
 }
