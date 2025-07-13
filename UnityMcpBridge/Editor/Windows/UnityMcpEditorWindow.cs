@@ -5,32 +5,9 @@ using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
 using UnityMcpBridge.Editor.Data;
-using UnityMcpBridge.Editor.Helpers;
 
-        /// <summary>
-        /// Converts a Windows path to a WSL (Windows Subsystem for Linux) path.
-        /// </summary>
-        /// <param name="windowsPath">The Windows path to convert (e.g., "C:\Users\User\Documents").</param>
-        /// <returns>The corresponding WSL path (e.g., "/mnt/c/Users/User/Documents").</returns>
-        private static string WindowsPathToWslPath(string windowsPath)
-        {
-            if (string.IsNullOrEmpty(windowsPath))
-            {
-                return windowsPath;
-            }
 
-            // Replace backslashes with forward slashes
-            string wslPath = windowsPath.Replace("\\", "/");
-
-            // Convert drive letter (e.g., C:/ to /mnt/c/)
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && wslPath.Length >= 2 && wslPath[1] == ':')
-            {
-                char driveLetter = char.ToLower(wslPath[0]);
-                wslPath = $"/mnt/{driveLetter}{wslPath.Substring(2)}";
-            }
-
-            return wslPath;
-        }
+        
 using UnityMcpBridge.Editor.Models;
 
 namespace UnityMcpBridge.Editor.Windows
@@ -611,6 +588,30 @@ namespace UnityMcpBridge.Editor.Windows
             {
                 mcpClient.SetStatus(McpStatus.Error, e.Message);
             }
+        }
+    /// <summary>
+        /// Converts a Windows path to a WSL (Windows Subsystem for Linux) path.
+        /// </summary>
+        /// <param name="windowsPath">The Windows path to convert (e.g., "C:\Users\User\Documents").</param>
+        /// <returns>The corresponding WSL path (e.g., "/mnt/c/Users/User/Documents").</returns>
+        private static string WindowsPathToWslPath(string windowsPath)
+        {
+            if (string.IsNullOrEmpty(windowsPath))
+            {
+                return windowsPath;
+            }
+
+            // Replace backslashes with forward slashes
+            string wslPath = windowsPath.Replace("\\", "/");
+
+            // Convert drive letter (e.g., C:/ to /mnt/c/)
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && wslPath.Length >= 2 && wslPath[1] == ':')
+            {
+                char driveLetter = char.ToLower(wslPath[0]);
+                wslPath = $"/mnt/{driveLetter}{wslPath.Substring(2)}";
+            }
+
+            return wslPath;
         }
     }
 }
