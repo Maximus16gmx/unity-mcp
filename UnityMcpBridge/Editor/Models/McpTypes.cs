@@ -8,6 +8,6 @@ namespace UnityMcpBridge.Editor.Models
         ClaudeCode,
         
     }
-}
+
 }
 
