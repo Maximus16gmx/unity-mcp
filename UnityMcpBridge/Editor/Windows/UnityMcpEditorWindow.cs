@@ -5,9 +5,7 @@ using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
 using UnityMcpBridge.Editor.Data;
-
-
-        
+using UnityMcpBridge.Editor.Helpers;
 using UnityMcpBridge.Editor.Models;
 
 namespace UnityMcpBridge.Editor.Windows
@@ -561,7 +559,7 @@ namespace UnityMcpBridge.Editor.Windows
                     string pythonDir = ServerInstaller.GetServerPath();
                     // Convert pythonDir to WSL path for comparison if running on Windows
                     string comparisonPythonDir = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                        ? PathConverter.WindowsPathToWslPath(pythonDir)
+                        ? WindowsPathToWslPath(pythonDir)
                         : pythonDir;
 
                     if (
